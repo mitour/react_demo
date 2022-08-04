@@ -1,28 +1,18 @@
 const { useState } = React;
-const Welcome = (props) => {
-  let [count, setCount] = useState(1);
+const Welcome = () => {
+  let [value, setValue] = useState("default");
   return (
     <>
-      <h1 className="royalblue">
-        {props.name}說了{count}次你好～～
-      </h1>
       <input
-        type="button"
-        onClick={() => {
-          setCount(count + 1);
+        type="text"
+        onChange={(e) => {
+          setValue(e.target.value);
         }}
-        value="say hi"
+        value={value}
       />
-      <input
-        type="button"
-        onClick={() => {
-          setCount(count - 1);
-        }}
-        value="regret"
-      />
+      <p>{value}</p>
     </>
   );
 };
-const content = <Welcome name="Mary"></Welcome>;
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(content);
+root.render(<Welcome />);
