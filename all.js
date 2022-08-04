@@ -1,29 +1,28 @@
-const members = [
-  {
-    no: 78012,
-    name: "Jack",
-  },
-  {
-    no: 24232,
-    name: "Mary",
-  },
-  {
-    no: 74243,
-    name: "Amy",
-  },
-];
-const Welcome = (props) => (
-  <h1 className="royalblue">{props.name} 說你好～～</h1>
-);
-const Student = () => {
+const { useState } = React;
+const Welcome = (props) => {
+  let [count, setCount] = useState(1);
   return (
     <>
-      {members.map((item, i) => (
-        <Welcome key={i} name={item.name} />
-      ))}
+      <h1 className="royalblue">
+        {props.name}說了{count}次你好～～
+      </h1>
+      <input
+        type="button"
+        onClick={() => {
+          setCount(count + 1);
+        }}
+        value="say hi"
+      />
+      <input
+        type="button"
+        onClick={() => {
+          setCount(count - 1);
+        }}
+        value="regret"
+      />
     </>
   );
 };
-
+const content = <Welcome name="Mary"></Welcome>;
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Student />);
+root.render(content);
