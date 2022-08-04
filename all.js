@@ -1,3 +1,6 @@
-const num = 3;
+const CallDogName = () => "Bob";
+const content = <h1>Hey {CallDogName()}</h1>;
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<h1>Hello {num}</h1>);
+
+root.render(content);
