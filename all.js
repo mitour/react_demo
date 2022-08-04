@@ -1,16 +1,28 @@
 const { useState } = React;
 const Welcome = () => {
-  let [value, setValue] = useState("default");
+  let [todo, setTodo] = useState([]);
+  let [value, setValue] = useState("");
   return (
     <>
+      <h1>Todo List</h1>
       <input
         type="text"
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
+        onChange={(e) => setValue(e.target.value)}
         value={value}
       />
-      <p>{value}</p>
+      <input
+        type="button"
+        onClick={() => {
+          setTodo([...todo, value]);
+          setValue("");
+        }}
+        value="submit"
+      />
+      <ul>
+        {todo.map((todo, i) => (
+          <li key={i}>{todo}</li>
+        ))}
+      </ul>
     </>
   );
 };
