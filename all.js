@@ -1,5 +1,22 @@
-const numbers = Array.from({ length: 5 }, (_, index) => index);
-const numberList = numbers.map((i, item) => <li key={i}>{item}</li>);
+const members = [
+  {
+    no: 78012,
+    name: "Jack",
+  },
+  {
+    no: 24232,
+    name: "Mary",
+  },
+  {
+    no: 74243,
+    name: "Amy",
+  },
+];
+const membersList = members.map((item, i) => (
+  <li key={i}>
+    {item.no}: {item.name}
+  </li>
+));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<ul>{numberList}</ul>);
+root.render(<ul>{membersList}</ul>);
