@@ -1,11 +1,17 @@
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const Welcome = (props) => {
-  const sayHiCount = 1;
-  return `Hey, I'm ${props.name}. I'm ${props.age} years old. ${sayHiCount} times say hi to you.`;
+  return (
+    <h1 className="royalblue">
+      Hey, I'm {props.name}. I'm {props.age} years old.
+    </h1>
+  );
 };
-const content = (
-  <h1 className="royalblue">
-    <Welcome name="Mary" age="15"></Welcome>
-  </h1>
-);
-root.render(content);
+const Content = () => {
+  return (
+    <>
+      <Welcome name="Mary" age="15"></Welcome>
+      <Welcome name="Bob" age="25"></Welcome>
+    </>
+  );
+};
+root.render(<Content />);
