@@ -12,11 +12,18 @@ const members = [
     name: "Amy",
   },
 ];
-const membersList = members.map((item, i) => (
-  <li key={i}>
-    {item.no}: {item.name}
-  </li>
-));
+const Welcome = (props) => (
+  <h1 className="royalblue">{props.name} 說你好～～</h1>
+);
+const Student = () => {
+  return (
+    <>
+      {members.map((item, i) => (
+        <Welcome key={i} name={item.name} />
+      ))}
+    </>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<ul>{membersList}</ul>);
+root.render(<Student />);
