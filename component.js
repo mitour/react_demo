@@ -1,39 +1,26 @@
-const { useState, useEffect } = React;
+const { useState } = React;
 
-function Loading() {
-  return <h2>Loading...</h2>;
-}
-
-function Item({ item }) {
+function TextInput({ value, setValue }) {
   return (
-    <ul>
-      {item.map((element, i) => {
-        return <li key={i}>{element.text}</li>;
-      })}
-    </ul>
+    <input
+      type="number"
+      value={value}
+      placeholder="輸入一個數字"
+      min="0"
+      onChange={(e) => {
+        setValue(e.target.value);
+      }}
+    />
   );
 }
 
-function useFetch(APIUrl) {
-  const [item, setItem] = useState([]);
-  useEffect(() => {
-    async function fetchApi() {
-      const response = await fetch(APIUrl);
-      const data = await response.json();
-      setItem(data);
-    }
-    fetchApi();
-  }, []);
-  return item;
-}
-
 function App() {
-  const APIUrl = "https://cat-fact.herokuapp.com/facts";
-  const item = useFetch(APIUrl);
+  const [value, setValue] = useState(null);
   return (
     <>
-      <h1>Top 5 facts about CAT</h1>
-      {item ? <Item item={item} /> : <Loading />}
+      <h1>🍊計算機</h1>
+      <TextInput value={value} setValue={setValue} />
+      <p>{value * value}</p>
     </>
   );
 }
