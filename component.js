@@ -1,26 +1,39 @@
 const { useState } = React;
 
-function TextInput({ value, setValue }) {
+function AddMenuInput({ item, setItem }) {
+  const [input, setInput] = useState("");
   return (
-    <input
-      type="number"
-      value={value}
-      placeholder="輸入一個數字"
-      min="0"
-      onChange={(e) => {
-        setValue(e.target.value);
-      }}
-    />
+    <>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => {
+          setInput(e.target.value);
+        }}
+      />
+      <input
+        type="button"
+        value="提交"
+        onClick={() => {
+          setInput("");
+          setItem([...item, input]);
+        }}
+      />
+    </>
   );
 }
 
 function App() {
-  const [value, setValue] = useState(null);
+  const [item, setItem] = useState([]);
   return (
     <>
-      <h1>🍊計算機</h1>
-      <TextInput value={value} setValue={setValue} />
-      <p>{value * value}</p>
+      <h1>八哥狗咖啡廳菜單</h1>
+      <AddMenuInput item={item} setItem={setItem} />
+      <ol>
+        {item.map((element, index) => {
+          return <li key={index}>{element}</li>;
+        })}
+      </ol>
     </>
   );
 }
