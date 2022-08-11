@@ -1,52 +1,68 @@
 const { useState } = React;
 
-function AddMenuInput({ item, setItem }) {
-  const [input, setInput] = useState("");
+function Switch({ index, element, floor, setFloor }) {
   const handleClick = () => {
-    if (!input) return;
-    setInput("");
-    setItem([...item, input]);
+    let newArr = [...floor];
+    newArr[index].status = !newArr[index].status;
+    setFloor(newArr);
   };
   return (
-    <>
+    <li key={index} className={element.status ? "light" : "dark"}>
+      {element.floor}樓
       <input
-        type="text"
-        value={input}
-        onChange={(e) => {
-          setInput(e.target.value);
-        }}
+        type="button"
+        value={element.status ? "關" : "開"}
+        onClick={handleClick}
       />
-      <input type="button" value="提交" onClick={handleClick} />
+    </li>
+  );
+}
+
+function Restaurant() {
+  const [floor, setFloor] = useState([
+    { floor: 1, status: true },
+    { floor: 2, status: true },
+    { floor: 3, status: true },
+  ]);
+  return (
+    <>
+      <h2>你才傲嬌貓日式料理</h2>
+      <ul className="buliding">
+        {floor.map((element, index) => {
+          return (
+            <Switch
+              index={index}
+              element={element}
+              floor={floor}
+              setFloor={setFloor}
+            />
+          );
+        })}
+      </ul>
     </>
   );
 }
 
 function Cafe() {
-  const [item, setItem] = useState(["單杯手沖哥倫比雅愛情靈藥", "隨便曼特寧"]);
+  const [floor, setFloor] = useState([
+    { floor: 1, status: false },
+    { floor: 2, status: false },
+  ]);
   return (
     <>
-      <h1>八哥狗咖啡廳菜單</h1>
-      <AddMenuInput item={item} setItem={setItem} />
-      <ol>
-        {item.map((element, index) => {
-          return <li key={index}>{element}</li>;
+      <h2>巴哥犬咖啡</h2>
+      <ul className="buliding">
+        {floor.map((element, index) => {
+          return (
+            <Switch
+              index={index}
+              element={element}
+              floor={floor}
+              setFloor={setFloor}
+            />
+          );
         })}
-      </ol>
-    </>
-  );
-}
-
-function Restaurant() {
-  const [item, setItem] = useState(["大蝦醋", "鮭魚子"]);
-  return (
-    <>
-      <h1>你才傲嬌日本料理</h1>
-      <AddMenuInput item={item} setItem={setItem} />
-      <ol>
-        {item.map((element, index) => {
-          return <li key={index}>{element}</li>;
-        })}
-      </ol>
+      </ul>
     </>
   );
 }
@@ -54,6 +70,7 @@ function Restaurant() {
 function App() {
   return (
     <>
+      <h1>第二週小練習</h1>
       <Restaurant />
       <Cafe />
     </>
