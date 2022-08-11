@@ -1,54 +1,47 @@
-const note = `卡注意喔，請先結帳，謝謝！`;
-function Desk() {
-  return <h3>這是桌面：{note}</h3>;
-}
-function Door() {
-  return <h3>這是門口：{note}</h3>;
-}
-function Board({ product }) {
-  return (
-    <h3
-      style={{
-        backgroundColor: "darkslategray",
-        borderBottom: "3px solid tan",
-        color: "snow",
-        padding: "1rem",
-      }}
-    >
-      今日優惠：{product}！
-    </h3>
-  );
-}
-
-function Restaurant() {
+function Item({ data }) {
   return (
     <>
-      <h2>瑪莉喵日料店</h2>
-      <Board product="一點也不傲嬌貓壽司" />
-      <Desk />
+      <ul>
+        {data.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </>
   );
 }
 
-function Cafe() {
-  return (
-    <>
-      <h2>章魚女王咖啡廳</h2>
-      <Board product="哈密瓜白巧克力風味星冰樂" />
-      <Door />
-    </>
-  );
+function Count({ data }) {
+  return <p>總共有{data.length}個產品</p>;
 }
 
-function App() {
+function Product() {
+  const productData = ["狗食", "貓食", "狗玩具", "貓玩具"];
   return (
     <>
-      <h1>第二週小練習：元件</h1>
-      <Restaurant />
-      <Cafe />
+      <h2>產品頁面</h2>
+      <Item data={productData} />
+      <Count data={productData} />
     </>
   );
 }
+function Cart() {
+  const cartData = ["狗食", "貓食"];
+  return (
+    <>
+      <h2>購物車頁面</h2>
+      <Item data={cartData} />
+      <Count data={cartData} />
+    </>
+  );
+}
+const App = function () {
+  return (
+    <>
+      <Product />
+      <Cart />
+    </>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("component"));
 root.render(<App />);
