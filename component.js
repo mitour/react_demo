@@ -8,24 +8,34 @@ function Item({ item }) {
   return (
     <ul>
       {item.map((element, i) => {
-        return <li key={i}>{element.name}</li>;
+        return <li key={i}>{element.text}</li>;
       })}
     </ul>
   );
 }
 
-function App() {
+function useFetch(APIUrl) {
   const [item, setItem] = useState([]);
   useEffect(() => {
     async function fetchApi() {
-      const response = await fetch("https://pokeapi.co/api/v2/pokemon");
+      const response = await fetch(APIUrl);
       const data = await response.json();
-
-      setItem(data.results);
+      setItem(data);
     }
     fetchApi();
   }, []);
-  return <>{item ? <Item item={item} /> : <Loading />}</>;
+  return item;
+}
+
+function App() {
+  const APIUrl = "https://cat-fact.herokuapp.com/facts";
+  const item = useFetch(APIUrl);
+  return (
+    <>
+      <h1>Top 5 facts about CAT</h1>
+      {item ? <Item item={item} /> : <Loading />}
+    </>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("component"));
