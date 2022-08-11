@@ -1,4 +1,4 @@
-function Board() {
+function Board({ product }) {
   return (
     <h3
       style={{
@@ -8,13 +8,27 @@ function Board() {
         padding: "1rem",
       }}
     >
-      今日優惠：一點也不傲嬌貓壽司！
+      今日優惠：{product}！
     </h3>
   );
 }
 
 function Restaurant() {
-  return <Board />;
+  return (
+    <>
+      <h2>瑪莉喵日料店</h2>
+      <Board product="一點也不傲嬌貓壽司" />
+    </>
+  );
+}
+
+function Cafe() {
+  return (
+    <>
+      <h2>章魚女王咖啡廳</h2>
+      <Board product="哈密瓜白巧克力風味星冰樂" />
+    </>
+  );
 }
 
 function App() {
@@ -22,6 +36,7 @@ function App() {
     <>
       <h1>第二週小練習：元件</h1>
       <Restaurant />
+      <Cafe />
     </>
   );
 }
