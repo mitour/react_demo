@@ -1,18 +1,32 @@
-const { useEffect } = React;
+const { useState, useEffect } = React;
 
-function Timer() {
-  const [count, setCount] = useState(0);
-  // 加入 useEffect 練習
-  useEffect(() => {
-    console.log(`click count: ${count}`);
-  }, [count]);
+function Loading() {
+  return <h2>Loading...</h2>;
+}
+
+function Item({ item }) {
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1> {count} </h1>
-      <button onClick={() => setCount(count + 1)}>更新</button>
-    </div>
+    <ul>
+      {item.map((element, i) => {
+        return <li key={i}>{element.name}</li>;
+      })}
+    </ul>
   );
 }
 
+function App() {
+  const [item, setItem] = useState([]);
+  useEffect(() => {
+    async function fetchApi() {
+      const response = await fetch("https://pokeapi.co/api/v2/pokemon");
+      const data = await response.json();
+
+      setItem(data.results);
+    }
+    fetchApi();
+  }, []);
+  return <>{item ? <Item item={item} /> : <Loading />}</>;
+}
+
 const root = ReactDOM.createRoot(document.getElementById("component"));
-root.render(<Timer />);
+root.render(<App />);
