@@ -33,7 +33,7 @@ const App = () => {
   let [record, setRecord] = useState([]);
   return (
     <>
-      <h1>匯率產生器LV3</h1>
+      <h1>第一週任務：匯率產生器LV3</h1>
       <h3>新增幣種</h3>
       <input
         type="text"
@@ -99,5 +99,5 @@ const App = () => {
     </>
   );
 };
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("currency"));
 root.render(<App />);

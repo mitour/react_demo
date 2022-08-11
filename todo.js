@@ -1,10 +1,10 @@
 const { useState } = React;
-const Welcome = () => {
+const App = () => {
   let [todo, setTodo] = useState([]);
   let [value, setValue] = useState("");
   return (
     <>
-      <h1>Todo List</h1>
+      <h1>第一週小練習：Todo List</h1>
       <input
         type="text"
         onChange={(e) => setValue(e.target.value)}
@@ -26,5 +26,5 @@ const Welcome = () => {
     </>
   );
 };
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Welcome />);
+const root = ReactDOM.createRoot(document.getElementById("todo"));
+root.render(<App />);

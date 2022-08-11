@@ -11,21 +11,26 @@
   <!-- 解析 JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <!-- 自己的 JS -->
-  <script src="all.js" type="text/babel"></script>
+  <script src="todo.js" type="text/babel"></script>
+  <script src="currency.js" type="text/babel"></script>
   <style>
     .royalblue {
       color: royalblue;
+    }
+
+    body {
+      display: flex;
+    }
+
+    article {
+      padding: 1rem;
     }
   </style>
 </head>
 
 <body>
-  <nav>
-    <ul>
-      <li><a href="/currency.html">第一週任務：匯率換算</a></li>
-    </ul>
-  </nav>
-  <div id="root"></div>
+  <article id="todo"></article>
+  <article id="currency"></article>
 </body>
 
 </html>
